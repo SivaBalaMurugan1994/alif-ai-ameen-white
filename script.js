@@ -44,8 +44,8 @@ window.addEventListener('scroll', () => {
         header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.05)';
     } else {
         header.style.boxShadow = 'none';
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
-        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.05)';
+        header.style.background = 'transparent';
+        header.style.borderBottom = 'none';
     }
 });
 

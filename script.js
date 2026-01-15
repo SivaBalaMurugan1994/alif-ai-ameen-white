@@ -40,11 +40,11 @@ navLinks.forEach(link => {
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
         header.style.boxShadow = '0 4px 6px rgba(0,0,0,0.05)';
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
+
         header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.05)';
     } else {
         header.style.boxShadow = 'none';
-        header.style.background = 'transparent';
+
         header.style.borderBottom = 'none';
     }
 });
@@ -75,7 +75,7 @@ window.addEventListener('scroll', () => {
 const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.2 // Trigger when 20% visible
+    threshold: 0.1 // Trigger when 10% visible
 };
 
 const observer = new IntersectionObserver((entries, observer) => {

@@ -177,15 +177,42 @@ img {
     align-items: center;
 }
 
-.logo {
+.nav-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    text-align: center;
+}
+
+.logo-main {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.logo-sub {
+    font-size: 0.65rem;
+    color: #888;
+    letter-spacing: 3px;
+    text-transform: uppercase;
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    width: 100%;
+    margin-top: 4px;
+    font-weight: 600;
+    justify-content: center;
+}
+
+.logo-sub::before,
+.logo-sub::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+    margin: 0 8px;
 }
 
 .logo-icon {
@@ -248,7 +275,7 @@ img {
 
 /* --- Hero Section --- */
 .hero {
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
     /* background-color: var(--bg-dark); */
     background-color: #0a172c;
@@ -827,6 +854,24 @@ img {
         flex-direction: column;
         gap: 50px;
     }
+
+    /* Fix for Hero Buttons on Mobile */
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        margin-left: 0;
+        /* Reset outline button margin */
+        text-align: center;
+        display: block;
+        /* Ensure full width clickable */
+    }
 }
 
 /* --- Animations --- */
@@ -849,6 +894,25 @@ img {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.hero-left-col {
+    opacity: 0;
+    /* Start invisible */
+    animation: slideInLeft 0.8s ease-out forwards;
+    /* Apply animation */
 }
 
 .animate-on-scroll {
@@ -921,4 +985,250 @@ img {
     }
 
 
+}
+
+/* --- Mobile Fixes (Added at end to override) --- */
+@media (max-width: 768px) {
+    .hero-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .hero-buttons .btn {
+        width: 100% !important;
+        margin-left: 0 !important;
+        display: block !important;
+    }
+}
+
+.hero-tagline {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-tagline {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.hero-tagline span {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tagline-separator {
+    display: none;
+    /* Hide pipe if using space-between */
+}
+
+/* --- Hero Restructuring (Full Width 50/50 Split) --- */
+
+.hero-wrapper {
+    display: flex;
+    width: 100%;
+    /* min-height: 100vh; */
+    /* Occupy full viewport height */
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    /* Remove container padding */
+}
+
+/* Left Column - Smart Solutions */
+.hero-left-col {
+    flex: 0 0 45%;
+    /* 40% width */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    /* Align text to the right side of the left column */
+    padding-right: 60px;
+    /* Space from center */
+    padding-left: 20px;
+    /* background-image: linear-gradient(rgba(0, 50, 100, 0.9), rgba(0, 30, 60, 0.95)), url('images/hero-left-bg.png'); */
+    /* Dark Blue Overlay */
+    background-size: cover;
+    background-position: center;
+    text-align: right;
+    border-radius: 0;
+    /* Full bleed, no radius */
+    margin: 0;
+}
+
+/* Hero Tagline Typography */
+.hero-tagline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    backdrop-filter: none;
+}
+
+.hero-tagline span {
+    font-size: 3.5rem;
+    /* Large impact font */
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: capitalize;
+    display: block;
+    background: none;
+    border: none;
+    padding: 0;
+    backdrop-filter: none;
+}
+
+.tag-white {
+    color: #ffffff;
+    font-size: 4.5rem !important;
+    /* Larger size for first line */
+}
+
+.tag-gold {
+    color: var(--primary-color);
+    /* Change to primary blue */
+    font-size: 2.5rem !important;
+    /* Smaller size for second line */
+}
+
+/* Hide old separators */
+.hero-left-col::after {
+    display: none;
+}
+
+.hero-right-col {
+    flex: 0 0 55%;
+    /* 60% width */
+    text-align: center;
+    /* Align content to center */
+    max-width: 800px;
+    /* Reset hero-content margin since it's now inside flex */
+    margin: 0;
+    padding: 40px;
+}
+
+.hero-content {
+    /* Override existing centering */
+    margin: 0;
+    text-align: center;
+    background: none;
+    /* Remove glass effect from container if preferred, or keep it */
+    box-shadow: none;
+    border: none;
+    backdrop-filter: none;
+}
+
+.hero-title,
+.hero-subtitle {
+    text-align: center;
+}
+
+.hero-buttons {
+    justify-content: center;
+    /* Align buttons center */
+    display: flex;
+    gap: 15px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .hero-wrapper {
+        flex-direction: column;
+        align-items: center;
+        min-height: auto;
+        /* Remove fixed height constraint */
+    }
+
+    .hero-left-col {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 0;
+        flex-direction: column;
+        align-items: center;
+        /* Center text on mobile */
+        text-align: center;
+        padding: 60px 20px;
+        min-height: 300px;
+        /* Give it some height */
+    }
+
+    .hero-left-col::after {
+        display: none;
+    }
+
+    .hero-tagline {
+        /* Reset any conflicting styles */
+        writing-mode: horizontal-tb;
+        transform: none;
+        width: 100%;
+        align-items: center;
+    }
+
+    .hero-tagline span {
+        font-size: 2.5rem;
+        /* Smaller font for mobile */
+        line-height: 1.2;
+    }
+
+    .hero-right-col {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .hero-title,
+    .hero-subtitle {
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+
+/* --- Updates for Logo & Footer Alignment --- */
+.logo-sub::before,
+.logo-sub::after {
+    display: none !important;
+}
+
+.footer-brand,
+.footer-content,
+.footer-links-group {
+    text-align: left !important;
+    align-items: flex-start !important;
+}
+
+.footer-logo.nav-logo {
+    align-items: flex-start !important;
+    width: fit-content;
+}
+
+.footer-socials {
+    justify-content: flex-start !important;
 }

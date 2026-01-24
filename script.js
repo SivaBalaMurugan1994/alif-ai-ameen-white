@@ -106,24 +106,31 @@ if (contactForm) {
         const originalText = btn.textContent;
         btn.textContent = 'Sending...';
 
-        // These IDs must be replaced by the user
-        const serviceID = 'YOUR_SERVICE_ID';
-        const templateID = 'YOUR_TEMPLATE_ID';
+        const formData = new FormData(this);
 
-        emailjs.sendForm(serviceID, templateID, this)
-            .then(() => {
-                btn.textContent = 'Sent Successfully!';
-                btn.classList.add('btn-success'); // Optional success style
-                alert('Your message has been sent successfully!');
-                contactForm.reset();
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.classList.remove('btn-success');
-                }, 3000);
-            }, (err) => {
+        fetch('send_email.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    btn.textContent = 'Sent Successfully!';
+                    btn.classList.add('btn-success');
+                    alert('Your message has been sent successfully!');
+                    contactForm.reset();
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.classList.remove('btn-success');
+                    }, 3000);
+                } else {
+                    throw new Error(data.message || 'Unknown error');
+                }
+            })
+            .catch(error => {
                 btn.textContent = 'Failed to Send';
-                alert('Failed to send message. Please try again later.\nError: ' + JSON.stringify(err));
-                console.error('EmailJS Error:', err);
+                alert('Failed to send message. Please try again later.\nError: ' + error.message);
+                console.error('Submission Error:', error);
                 setTimeout(() => {
                     btn.textContent = originalText;
                 }, 3000);

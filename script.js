@@ -106,30 +106,21 @@ if (contactForm) {
         const originalText = btn.textContent;
         btn.textContent = 'Sending...';
 
-        const formData = new FormData(this);
-
-        fetch('send_email.php', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    btn.textContent = 'Sent Successfully!';
-                    btn.classList.add('btn-success');
-                    alert('Your message has been sent successfully!');
-                    contactForm.reset();
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.classList.remove('btn-success');
-                    }, 3000);
-                } else {
-                    throw new Error(data.message || 'Unknown error');
-                }
-            })
-            .catch(error => {
+        // parameters: service_id, template_id, template_params
+        // We use .sendForm because it automatically grabs all inputs by 'name'
+        emailjs.sendForm('service_3zia7ub', 'template_ly50xwj', this)
+            .then(function () {
+                btn.textContent = 'Sent Successfully!';
+                btn.classList.add('btn-success');
+                showToast('Your message has been sent successfully!', 'success');
+                contactForm.reset();
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('btn-success');
+                }, 3000);
+            }, function (error) {
                 btn.textContent = 'Failed to Send';
-                alert('Failed to send message. Please try again later.\nError: ' + error.message);
+                showToast('Failed to send message. Please try again later.', 'error');
                 console.error('Submission Error:', error);
                 setTimeout(() => {
                     btn.textContent = originalText;
@@ -147,6 +138,39 @@ function setCurrentYear() {
     } else {
         console.error('Element #current-year not found');
     }
+}
+
+
+/* --- Toast Notification Helper --- */
+function showToast(message, type = 'success') {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+
+    // Icons based on type
+    const icon = type === 'success' ? '<i class="fa-solid fa-check-circle toast-icon"></i>' : '<i class="fa-solid fa-circle-exclamation toast-icon"></i>';
+
+    toast.innerHTML = `${icon}<span class="toast-message">${message}</span>`;
+
+    container.appendChild(toast);
+
+    // Trigger reflow for animation
+    void toast.offsetWidth;
+    toast.classList.add('show');
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+        }, 400); // Wait for transition
+    }, 4000);
 }
 
 document.addEventListener('DOMContentLoaded', setCurrentYear);

@@ -79,6 +79,14 @@
       ]
     }
     </script>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init("_w9UAkMz2Hgj4Cw-3");
+        })();
+    </script>
 </head>
 
 <body>
@@ -114,8 +122,8 @@
         <div class="hero-wrapper">
             <div class="hero-left-col animate-up">
                 <div class="hero-tagline">
-                    <span class="tag-white">Built on Trust.</span>
-                    <span class="tag-gold">Delivered with Quality.</span>
+                    <span class="tag-white">Built on Trust</span>
+                    <span class="tag-gold">Delivered with Quality</span>
                 </div>
             </div>
             <div class="hero-right-col hero-content">
@@ -384,7 +392,8 @@
                             </div>
                             <div class="info-text">
                                 <h3>Email Us</h3>
-                                <p>alifalameentech.services2025@gmail.com</p>
+                                <p>info@alifalameen.com</p>
+                                <p>alifalameentechnicalservice@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -406,20 +415,20 @@
                 <div class="contact-form animate-on-scroll delay-1">
                     <form id="contact-form">
                         <div class="form-group">
-                            <input type="text" name="user_name" placeholder="Your Name" required>
+                            <input type="text" name="user_name" placeholder="Your Name *" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" name="user_mobile" placeholder="Mobile Number" required pattern="[0-9]+"
+                            <input type="tel" name="user_mobile" placeholder="Mobile Number *" required pattern="[0-9]+"
                                 inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </div>
                         <div class="form-group">
-                            <input type="email" name="user_email" placeholder="Your Email" required>
+                            <input type="email" name="user_email" placeholder="Your Email *" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="subject" placeholder="Subject" required>
+                            <input type="text" name="subject" placeholder="Subject *" required>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" placeholder="Your Message" required></textarea>
+                            <textarea name="message" placeholder="Your Message *" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Send
                             Message</button>
@@ -465,13 +474,16 @@
                     <div class="contact-row">
                         <i class="fa-solid fa-phone"></i>
                         <div class="contact-number-group">
-                            <span>+971 56 330 6854, +971 56 563 6239</span>,<br>
+                            <span>+971 56 330 6854, +971 56 563 6239</span><br>
                             <span>+971 55 596 2827</span>
                         </div>
                     </div>
                     <div class="contact-row">
                         <i class="fa-solid fa-envelope"></i>
-                        <span>alifalameentech.services2025@gmail.com</span>
+                        <div class="contact-number-group">
+                            <span>info@alifalameen.com</span><br>
+                            <span>alifalameentechnicalservice@gmail.com</span>
+                        </div>
                     </div>
                     <div class="contact-row">
                         <i class="fa-solid fa-location-dot"></i>

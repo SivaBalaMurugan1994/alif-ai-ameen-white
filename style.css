@@ -179,16 +179,29 @@ img {
 
 .nav-logo {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    line-height: 1;
+    text-align: left;
+}
+
+.brand-logo {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    line-height: 1;
-    text-align: center;
 }
 
 .logo-main {
     font-size: 1.8rem;
     font-weight: 800;
-    color: var(--primary-color);
+    color: #0a172c;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
@@ -757,17 +770,35 @@ img {
 .footer-brand {
     flex: 1.5;
     min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.footer-logo .brand-logo {
+    height: 90px;
+    width: auto;
 }
 
 .footer-tagline {
     color: var(--text-muted);
     margin: 15px 0 25px;
     font-size: 0.95rem;
+    text-align: center;
 }
 
 .footer-socials {
     display: flex;
     gap: 15px;
+    justify-content: center;
 }
 
 .footer-socials a {
@@ -1217,7 +1248,6 @@ img {
     display: none !important;
 }
 
-.footer-brand,
 .footer-content,
 .footer-links-group {
     text-align: left !important;
@@ -1225,7 +1255,7 @@ img {
 }
 
 .footer-logo.nav-logo {
-    align-items: flex-start !important;
+    align-items: center !important;
     width: fit-content;
 }
 
@@ -1286,4 +1316,42 @@ img {
     font-size: 0.95rem;
     color: #333;
     font-weight: 500;
+}
+
+/* --- Mobile Fixes for Logo --- */
+@media (max-width: 768px) {
+    .nav-logo {
+        gap: 8px;
+    }
+
+    .brand-logo {
+        height: 35px;
+    }
+
+    .footer-logo .brand-logo {
+        height: 60px;
+    }
+
+    .logo-main {
+        font-size: 1.2rem;
+    }
+
+    .logo-sub {
+        font-size: 0.55rem;
+    }
+
+    .footer-brand,
+    .footer-content,
+    .footer-links-group {
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .footer-socials {
+        justify-content: center !important;
+    }
+
+    .footer-logo.nav-logo {
+        align-items: center !important;
+    }
 }
